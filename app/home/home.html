@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-header"><h1 class="text-center">Best Weather Widget</h1></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-sm-3"></div>
+    <div class="col-xs-8 col-sm-6">
+      <div class="row">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Enter a city name" ng-model="query" ng-keyup="$event.keyCode == 13 && search()">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="search()">Search!</button>
+          </span>
+        </div>
+      </div>
+      <div class="row" ng-show="error">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <div class="text-center alert alert-warning no-results" role="alert">{{error}}</div>
+        </div>
+        <div class="col-xs-1"></div>
+      </div>
+    </div>
+    <div class="col-xs-2 col-sm-3"></div>
+  </div>
+  <div class="row" ng-show="loading_state == 'finished'">
+    <div class="col-xs-12 text-center"><h1>{{current_location}}</h1></div>
+    <div class="col-xs-12 text-center">5-day average: <em>{{average_temp | number: 0}}&#8451;</em></div>
+    <div class="col-sm-1"></div>
+    <div class="col-xs-12 col-sm-2 forecast-tile" ng-repeat="forecast in forecasts">
+      <div class="col-xs-6 col-sm-12">
+        <div class="weather-data">
+          <div class="row date"><h4>{{forecast.applicable_date | date: "EEE, MMM d"}}</h4></div>
+          <div class="row">High: {{forecast.max_temp | number: 0 }}&#8451;</div>
+          <div class="row">Low: {{forecast.min_temp | number: 0}}&#8451;</div>
+          <div class="row">Wind: {{forecast.wind_speed | number: 1}} mph</div>
+          <div class="row">Certainty Level: {{forecast.predictability}}%</div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-12">
+        <div class="weather-summary">
+          <img class="weather-icon" ng-src="{{'/assets/img/' + forecast.weather_state_abbr + '.svg'}}">
+          <div class="row conditions"><em>{{forecast.weather_state_name}}</em></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="row" ng-show="loading_state == 'loading'">
+    <div class="col-xs-12 text-center">
+      <img src="assets/img/loading.gif" style="max-width:100%; max-height:100%;">
+    </div>
+  </div>
+  <div class="row" ng-show="loading_state == 'finished'">
+    <div class="col-xs-12 text-center">
+      <svg class="temp-chart"></svg>
+    </div>
+    <div class="col-xs-12 text-center">
+      <small>Legend: <span class="legend_high">daily high</span>, <span class="legend_low">daily low</span>, in &#8451;</small>
+    </div>
+  </div>
+</div>
