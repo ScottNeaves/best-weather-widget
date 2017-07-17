@@ -120,7 +120,6 @@ angular.module('myApp.view1', ['ngRoute'])
   }
 
   function resize(){
-    console.log('resize');
     $scope.reset_temp_chart();
     $scope.create_temp_chart();
   }
