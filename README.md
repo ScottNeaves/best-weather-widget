@@ -1,6 +1,7 @@
-# "Best Weather Widget"
+# Best Weather Widget
 
 Demo: [http://gatekeeper-tiger-33613.bitballoon.com/](http://gatekeeper-tiger-33613.bitballoon.com/)
+
 Code: [https://github.com/ScottNeaves/best-weather-widget](https://github.com/ScottNeaves/best-weather-widget)
 
 ## How to run:
